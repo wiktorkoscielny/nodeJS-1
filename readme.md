@@ -10,9 +10,6 @@ This application downloads, uploads, updates and deletes data on the server
 
 ##### Frontend [demo](https://react-node-express-todo.netlify.app)
 
-
-##### Backend [demo](https://todo-node-backend-1.herokuapp.com/todos)
-
 ## Technologies
 1. Todo Application written with React.js
 2. Server on Node.js and Express framework
