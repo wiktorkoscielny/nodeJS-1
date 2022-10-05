@@ -26,7 +26,7 @@ function App() {
   const getTodosFromServer = async () => {
    
     try {
-      const response = await fetch("http://localhost:5000/todos");
+      const response = await fetch("https://todo-node-backend-1.herokuapp.com/todos");
       const data = await response.json();
       setTasks(data.todoList);
     } catch (e) {
@@ -35,15 +35,14 @@ function App() {
     setVisible(false)
   };
   function deleteItemFromBackend(id) {
-    return fetch(`http://localhost:5000/todos/${id}`, {
+    return fetch(`https://todo-node-backend-1.herokuapp.com/todos/${id}`, {
       method: "DELETE",
     });
-   
   }
 
   function patchItemToBackEnd(update) {
     const id = update.id;
-    return fetch(`http://localhost:5000/todos/${id}`, {
+    return fetch(`https://todo-node-backend-1.herokuapp.com/todos/${id}`, {
       method: "PATCH",
       body: JSON.stringify(update),
       headers: {
@@ -53,7 +52,7 @@ function App() {
   }
 
   function deleteAllTodosFromBackend() {
-    return fetch("http://localhost:5000/todos", {
+    return fetch("https://todo-node-backend-1.herokuapp.com/todos", {
       method: "DELETE",
     });
   }

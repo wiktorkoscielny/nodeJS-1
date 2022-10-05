@@ -10,7 +10,7 @@ function AddTask({ addTask }) {
 
 
   function sendItemToBackEnd(item) {
-    fetch("http://localhost:5000/todos", {
+    fetch("https://todo-node-backend-1.herokuapp.com/todos", {
       method: "POST",
       body: JSON.stringify(item),
       headers: {
