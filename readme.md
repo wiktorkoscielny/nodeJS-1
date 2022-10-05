@@ -16,3 +16,5 @@ This application downloads, uploads, updates and deletes data on the server
 - Add todo
 - Delete single todo/all todos
 - Update todo
+
+###### Basic version of the todo (frontend) application was forked from (erfjs)[https://github.com/erfjs/Todo-list]
