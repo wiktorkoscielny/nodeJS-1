@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-// set url
-const url = 5000;
+// set port
+const port = process.env.PORT || 5000
 // CORS config 
 app.use(cors());
 // middleware
@@ -68,6 +68,6 @@ app.patch("/todos/:todoId", (req, res) => {
     // here i am updating only one task... maybe i should return whole new todolist with updated task ?
 })
 
-app.listen(url, () => {
-    console.log(`🚀 Server started on port: ${url}`);
+app.listen(port, () => {
+    console.log(`🚀 Server started on port: ${port}`);
 });
