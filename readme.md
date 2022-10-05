@@ -1,0 +1,18 @@
+# React todo app with Node.js & Express backend
+
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Features](#features)
+
+
+## General info
+This application downloads, uploads, updates and deletes data on the server 
+
+## Technologies
+1. Todo Application written with React.js
+2. Server on Node.js and Express framework
+
+## Features 
+- Add todo
+- Delete single todo/all todos
+- Update todo
