@@ -4,7 +4,7 @@ import {
   VStack,
   useColorMode,
   useToast,
-  Spinner
+  Spinner,
 } from "@chakra-ui/react";
 import TaskList from "./components/tasks";
 import AddTask from "./components/AddTask";
@@ -17,22 +17,22 @@ function App() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    setVisible(true)
+    setVisible(true);
     getTodosFromServer();
   }, []);
 
-
   // backend functions
   const getTodosFromServer = async () => {
-   
     try {
-      const response = await fetch("https://todo-node-backend-1.herokuapp.com/todos");
+      const response = await fetch(
+        "https://todo-node-backend-1.herokuapp.com/todos"
+      );
       const data = await response.json();
       setTasks(data.todoList);
     } catch (e) {
       console.log(e);
     }
-    setVisible(false)
+    setVisible(false);
   };
   function deleteItemFromBackend(id) {
     return fetch(`https://todo-node-backend-1.herokuapp.com/todos/${id}`, {
@@ -82,7 +82,6 @@ function App() {
     });
 
     setTasks(newTasksCheck);
-
   }
 
   function updateTask(id, body, onClose) {
@@ -118,51 +117,57 @@ function App() {
   function addTask(task) {
     setTasks([...tasks, task]);
   }
-  
 
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <div>
       <VStack p={4} minH="100vh" pb={28}>
-      <IconButton
-        icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
-        isRound="true"
-        size="md"
-        alignSelf="flex-end"
-        onClick={toggleColorMode}
-        aria-label="toogle-dark-mode"
-      />
+        <IconButton
+          icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
+          isRound="true"
+          size="md"
+          alignSelf="flex-end"
+          onClick={toggleColorMode}
+          aria-label="toogle-dark-mode"
+        />
 
-      <Heading
-        p="5"
-        fontWeight="extrabold"
-        size="xl"
-        bgGradient="linear(to-r, red.500, yellow.500)"
-        bgClip="text"
-      >
-        Todo list
-      </Heading>
-      <div style={{position: "relative"}}>
-        <AddTask addTask={addTask}/>
-        <div style={{position: "absolute", top: "23px", right: "120px", visibility: visible === true ? "visible" : "hidden"}}>
-          <Spinner
-            thickness="4px"
-            speed="1s"
-            emptyColor="gray.200"
-            color="blue.200"
-            size="lg"
-          />
+        <Heading
+          p="5"
+          fontWeight="extrabold"
+          size="xl"
+          bgGradient="linear(to-r, red.500, yellow.500)"
+          bgClip="text"
+        >
+          Todo list
+        </Heading>
+        <div style={{ position: "relative" }}>
+          <AddTask addTask={addTask} />
+          <div
+            style={{
+              position: "absolute",
+              top: "23px",
+              right: "120px",
+              visibility: visible === true ? "visible" : "hidden",
+            }}
+          >
+            <Spinner
+              thickness="4px"
+              speed="1s"
+              emptyColor="gray.200"
+              color="blue.200"
+              size="lg"
+            />
+          </div>
         </div>
-      </div>
-      <TaskList
-        tasks={tasks}
-        updateTask={updateTask}
-        deleteTask={deleteTask}
-        deleteTaskAll={deleteTaskAll}
-        checkTask={checkTask}
-      />
-    </VStack>
+        <TaskList
+          tasks={tasks}
+          updateTask={updateTask}
+          deleteTask={deleteTask}
+          deleteTaskAll={deleteTaskAll}
+          checkTask={checkTask}
+        />
+      </VStack>
     </div>
   );
 }

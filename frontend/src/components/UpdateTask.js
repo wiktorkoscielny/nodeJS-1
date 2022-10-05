@@ -24,7 +24,7 @@ function UpdateTask({ task, updateTask }) {
 
   return (
     <>
-      <IconButton icon={<FiEdit />} isRound='true' onClick={onOpen} />
+      <IconButton icon={<FiEdit />} isRound="true" onClick={onOpen} />
       <Modal
         isCentered
         initialFocusRef={initialRef}
@@ -32,14 +32,14 @@ function UpdateTask({ task, updateTask }) {
         onClose={onClose}
       >
         <ModalOverlay />
-        <ModalContent w='90%'>
+        <ModalContent w="90%">
           <ModalHeader>Update your task</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
               <Input
                 ref={initialRef}
-                placeholder='Enter your task'
+                placeholder="Enter your task"
                 defaultValue={task.body}
                 onChange={(e) => setBody(e.target.value)}
                 onFocus={(e) => setBody(e.target.value)}
@@ -52,7 +52,7 @@ function UpdateTask({ task, updateTask }) {
               Cancel
             </Button>
             <Button
-              colorScheme='blue'
+              colorScheme="blue"
               onClick={() => updateTask(task.id, body, onClose)}
             >
               Save

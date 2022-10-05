@@ -2,12 +2,10 @@ import { useState } from "react";
 import { Button, HStack, Input, useToast } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
 
-
 function AddTask({ addTask }) {
   const toast = useToast();
   const [content, setContent] = useState("");
   const [statusInput, setStatusInput] = useState(true);
-
 
   function sendItemToBackEnd(item) {
     fetch("https://todo-node-backend-1.herokuapp.com/todos", {
@@ -16,14 +14,13 @@ function AddTask({ addTask }) {
       headers: {
         // data type
         "Content-type": "application/json",
-      }
+      },
     });
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    
-    
+
     const taskText = content.trim();
 
     if (!taskText) {
@@ -45,7 +42,7 @@ function AddTask({ addTask }) {
     };
 
     addTask(task);
-    sendItemToBackEnd(task)
+    sendItemToBackEnd(task);
     setContent("");
   }
 
@@ -55,23 +52,23 @@ function AddTask({ addTask }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <HStack mt='4' mb='4'>
+      <HStack mt="4" mb="4">
         <Input
-          h='46'
+          h="46"
           borderColor={!statusInput ? "red.300" : "transparent"}
-          variant='filled'
-          placeholder='Enter your task'
+          variant="filled"
+          placeholder="Enter your task"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         ></Input>
-        
+
         <Button
-          colorScheme='twitter'
-          px='8'
-          pl='10'
-          pr='10'
-          h='46'
-          type='submit'
+          colorScheme="twitter"
+          px="8"
+          pl="10"
+          pr="10"
+          h="46"
+          type="submit"
         >
           Add
         </Button>
