@@ -4,22 +4,27 @@ import {
   VStack,
   useColorMode,
   useToast,
+  Spinner
 } from "@chakra-ui/react";
 import TaskList from "./components/tasks";
 import AddTask from "./components/AddTask";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function App() {
   const toast = useToast();
   const [tasks, setTasks] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    setVisible(true)
     getTodosFromServer();
   }, []);
 
+
   // backend functions
   const getTodosFromServer = async () => {
+   
     try {
       const response = await fetch("http://localhost:5000/todos");
       const data = await response.json();
@@ -27,11 +32,13 @@ function App() {
     } catch (e) {
       console.log(e);
     }
+    setVisible(false)
   };
   function deleteItemFromBackend(id) {
     return fetch(`http://localhost:5000/todos/${id}`, {
       method: "DELETE",
     });
+   
   }
 
   function patchItemToBackEnd(update) {
@@ -76,6 +83,7 @@ function App() {
     });
 
     setTasks(newTasksCheck);
+
   }
 
   function updateTask(id, body, onClose) {
@@ -105,18 +113,19 @@ function App() {
     });
 
     setTasks(newTasksUpdate);
-
     onClose();
   }
 
   function addTask(task) {
     setTasks([...tasks, task]);
   }
+  
 
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <VStack p={4} minH="100vh" pb={28}>
+    <div>
+      <VStack p={4} minH="100vh" pb={28}>
       <IconButton
         icon={colorMode === "light" ? <FaSun /> : <FaMoon />}
         isRound="true"
@@ -135,7 +144,18 @@ function App() {
       >
         Todo list
       </Heading>
-      <AddTask addTask={addTask} />
+      <div style={{position: "relative"}}>
+        <AddTask addTask={addTask}/>
+        <div style={{position: "absolute", top: "23px", right: "120px", visibility: visible === true ? "visible" : "hidden"}}>
+          <Spinner
+            thickness="4px"
+            speed="1s"
+            emptyColor="gray.200"
+            color="blue.200"
+            size="lg"
+          />
+        </div>
+      </div>
       <TaskList
         tasks={tasks}
         updateTask={updateTask}
@@ -144,6 +164,7 @@ function App() {
         checkTask={checkTask}
       />
     </VStack>
+    </div>
   );
 }
 
