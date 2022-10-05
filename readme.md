@@ -10,7 +10,6 @@ This application downloads, uploads, updates and deletes data on the server
 
 ##### Frontend [demo](react-node-express-todo.netlify.app)
 
-<br />
 
 ##### Backend [demo](https://todo-node-backend-1.herokuapp.com/todos)
 
