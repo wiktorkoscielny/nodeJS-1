@@ -8,6 +8,8 @@
 ## General info
 This application downloads, uploads, updates and deletes data on the server 
 
+backend: https://todo-node-backend-1.herokuapp.com/todos
+
 ## Technologies
 1. Todo Application written with React.js
 2. Server on Node.js and Express framework
