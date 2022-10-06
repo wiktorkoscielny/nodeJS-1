@@ -8,7 +8,7 @@
 ## General info
 This application downloads, uploads, updates and deletes data on the server 
 
-##### Frontend [demo](https://react-node-express-todo.netlify.app)
+# [demo](https://react-node-express-todo.netlify.app)
 
 ## Technologies
 1. Todo Application written with React.js
